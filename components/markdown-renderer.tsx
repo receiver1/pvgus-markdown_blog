@@ -10,6 +10,13 @@ interface MarkdownRendererProps {
   content: string;
 }
 
+interface CodeProps {
+  node?: any,
+  inline?: any,
+  className?: any,
+  children?: any,
+}
+
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
   const { theme } = useTheme();
 
@@ -49,7 +56,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             </h2>
           );
         },
-        code({node, className, children, ...props}) {
+        code({node, className, children, ...props}: CodeProps) {
           const match = /language-(\w+)/.exec(className || '');
           return match ? (
             <SyntaxHighlighter
